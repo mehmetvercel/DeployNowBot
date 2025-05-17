@@ -5,43 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Under Construction</title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      height: 100vh;
-      background: #ec6608;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
       background: linear-gradient(-45deg, #ec6608, #ff9248, #ec6608);
       background-size: 400% 400%;
       animation: gradientBG 12s ease infinite;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: 'Segoe UI', sans-serif;
-      overflow: hidden;
-      position: relative;
-      color: white;
-    }
-
-    /* Particle/Dust Styles */
-    .particle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      animation: float 10s linear infinite;
-    }
-
-    .particle:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
-    .particle:nth-child(2) { top: 50%; left: 40%; animation-delay: 2s; }
-    .particle:nth-child(3) { top: 80%; left: 10%; animation-delay: 4s; }
-    .particle:nth-child(4) { top: 30%; left: 70%; animation-delay: 1s; }
-    .particle:nth-child(5) { top: 60%; left: 90%; animation-delay: 3s; }
-
-    @keyframes float {
-      0% { transform: translateY(0); opacity: 0.5; }
-      50% { transform: translateY(-15px); opacity: 1; }
-      100% { transform: translateY(0); opacity: 0.5; }
     }
 
     @keyframes gradientBG {
@@ -50,7 +27,7 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Crane + Hook Combo */
+    /* Crane setup */
     .crane-wrap {
       display: flex;
       flex-direction: column;
@@ -115,27 +92,10 @@
       }
     }
 
-    /* Delay each letter for drop effect */
-    .letter:nth-child(1) { animation-delay: 0.1s; }
-    .letter:nth-child(2) { animation-delay: 0.2s; }
-    .letter:nth-child(3) { animation-delay: 0.3s; }
-    .letter:nth-child(4) { animation-delay: 0.4s; }
-    .letter:nth-child(5) { animation-delay: 0.5s; }
-    .letter:nth-child(6) { animation-delay: 0.6s; }
-    .letter:nth-child(7) { animation-delay: 0.7s; }
-    .letter:nth-child(8) { animation-delay: 0.8s; }
-    .letter:nth-child(9) { animation-delay: 0.9s; }
-    .letter:nth-child(10) { animation-delay: 1s; }
-    .letter:nth-child(11) { animation-delay: 1.1s; }
-    .letter:nth-child(12) { animation-delay: 1.2s; }
-    .letter:nth-child(13) { animation-delay: 1.3s; }
-    .letter:nth-child(14) { animation-delay: 1.4s; }
-    .letter:nth-child(15) { animation-delay: 1.5s; }
-    .letter:nth-child(16) { animation-delay: 1.6s; }
-    .letter:nth-child(17) { animation-delay: 1.7s; }
-    .letter:nth-child(18) { animation-delay: 1.8s; }
+    .letter:nth-child(n) {
+      animation-delay: calc(0.1s * var(--i));
+    }
 
-    /* Button Styling */
     a {
       font-size: 1.3rem;
       color: white;
@@ -154,48 +114,105 @@
       transform: scale(1.05);
       box-shadow: 0 0 20px white;
     }
+
+    /* Falling dust */
+    .falling-dust {
+      position: absolute;
+      top: -10px;
+      width: 5px;
+      height: 5px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+    /* Cursor particles */
+    .cursor-dust {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      pointer-events: none;
+      animation: fadeOut 1s ease forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        transform: translateY(-10px);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Dust Particles -->
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-
-  <!-- Crane with Hook -->
+  <!-- Crane and hook -->
   <div class="crane-wrap">
     <div class="crane-icon">🏗️</div>
     <div class="hook-line"></div>
     <div class="hook">🪝</div>
   </div>
 
-  <!-- Animated Text -->
+  <!-- Title being constructed -->
   <div class="construction-text">
-    <span class="letter">U</span>
-    <span class="letter">N</span>
-    <span class="letter">D</span>
-    <span class="letter">E</span>
-    <span class="letter">R</span>
-    <span class="letter space"> </span>
-    <span class="letter">C</span>
-    <span class="letter">O</span>
-    <span class="letter">N</span>
-    <span class="letter">S</span>
-    <span class="letter">T</span>
-    <span class="letter">R</span>
-    <span class="letter">U</span>
-    <span class="letter">C</span>
-    <span class="letter">T</span>
-    <span class="letter">I</span>
-    <span class="letter">O</span>
-    <span class="letter">N</span>
+    <span class="letter" style="--i:1">U</span>
+    <span class="letter" style="--i:2">N</span>
+    <span class="letter" style="--i:3">D</span>
+    <span class="letter" style="--i:4">E</span>
+    <span class="letter" style="--i:5">R</span>
+    <span class="letter space" style="--i:6"> </span>
+    <span class="letter" style="--i:7">C</span>
+    <span class="letter" style="--i:8">O</span>
+    <span class="letter" style="--i:9">N</span>
+    <span class="letter" style="--i:10">S</span>
+    <span class="letter" style="--i:11">T</span>
+    <span class="letter" style="--i:12">R</span>
+    <span class="letter" style="--i:13">U</span>
+    <span class="letter" style="--i:14">C</span>
+    <span class="letter" style="--i:15">T</span>
+    <span class="letter" style="--i:16">I</span>
+    <span class="letter" style="--i:17">O</span>
+    <span class="letter" style="--i:18">N</span>
   </div>
 
-  <!-- Button -->
+  <!-- Update Button -->
   <a href="https://x.com/DeployDotNow" target="_blank">Check Our X For Updates</a>
+
+  <!-- Falling dust generator -->
+  <script>
+    for (let i = 0; i < 50; i++) {
+      const dust = document.createElement('div');
+      dust.classList.add('falling-dust');
+      dust.style.left = Math.random() * 100 + 'vw';
+      dust.style.animationDuration = (5 + Math.random() * 10) + 's';
+      document.body.appendChild(dust);
+    }
+  </script>
+
+  <!-- Cursor dust trail -->
+  <script>
+    document.addEventListener('mousemove', (e) => {
+      const particle = document.createElement('div');
+      particle.className = 'cursor-dust';
+      particle.style.left = `${e.clientX}px`;
+      particle.style.top = `${e.clientY}px`;
+      document.body.appendChild(particle);
+      setTimeout(() => particle.remove(), 1000);
+    });
+  </script>
 
 </body>
 </html>
