@@ -9,9 +9,11 @@
       margin: 0;
       padding: 0;
       height: 100%;
+      width: 100%;
       overflow: hidden;
-      background: linear-gradient(-45deg, #ec6608, #ff9248, #ec6608);
-      background-size: 400% 400%;
+      background: #ec6608;
+      background: linear-gradient(-45deg, #ec6608 0%, #ff9248 50%, #ec6608 100%);
+      background-size: 200% 200%;
       animation: gradientBG 12s ease infinite;
       font-family: 'Segoe UI', sans-serif;
       color: white;
@@ -19,6 +21,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
 
     @keyframes gradientBG {
@@ -27,7 +30,7 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Crane setup */
+    /* Crane + Hook */
     .crane-wrap {
       display: flex;
       flex-direction: column;
@@ -58,6 +61,7 @@
       50% { transform: rotate(6deg); }
     }
 
+    /* Text drop-in */
     .construction-text {
       display: flex;
       flex-wrap: wrap;
@@ -93,9 +97,10 @@
     }
 
     .letter:nth-child(n) {
-      animation-delay: calc(0.1s * var(--i));
+      animation-delay: calc(0.08s * var(--i));
     }
 
+    /* Button */
     a {
       font-size: 1.3rem;
       color: white;
@@ -115,7 +120,7 @@
       box-shadow: 0 0 20px white;
     }
 
-    /* Falling dust */
+    /* Falling Dust */
     .falling-dust {
       position: absolute;
       top: -10px;
@@ -138,7 +143,7 @@
       }
     }
 
-    /* Cursor particles */
+    /* Cursor Sparkles */
     .cursor-dust {
       position: fixed;
       width: 6px;
@@ -159,14 +164,25 @@
 </head>
 <body>
 
-  <!-- Crane and hook -->
+  <!-- Falling Particles -->
+  <script>
+    for (let i = 0; i < 60; i++) {
+      const dust = document.createElement('div');
+      dust.classList.add('falling-dust');
+      dust.style.left = Math.random() * 100 + 'vw';
+      dust.style.animationDuration = (5 + Math.random() * 10) + 's';
+      document.body.appendChild(dust);
+    }
+  </script>
+
+  <!-- Crane + Hook -->
   <div class="crane-wrap">
     <div class="crane-icon">🏗️</div>
     <div class="hook-line"></div>
     <div class="hook">🪝</div>
   </div>
 
-  <!-- Title being constructed -->
+  <!-- UNDER CONSTRUCTION Text -->
   <div class="construction-text">
     <span class="letter" style="--i:1">U</span>
     <span class="letter" style="--i:2">N</span>
@@ -188,29 +204,18 @@
     <span class="letter" style="--i:18">N</span>
   </div>
 
-  <!-- Update Button -->
+  <!-- Button -->
   <a href="https://x.com/DeployDotNow" target="_blank">Check Our X For Updates</a>
 
-  <!-- Falling dust generator -->
-  <script>
-    for (let i = 0; i < 50; i++) {
-      const dust = document.createElement('div');
-      dust.classList.add('falling-dust');
-      dust.style.left = Math.random() * 100 + 'vw';
-      dust.style.animationDuration = (5 + Math.random() * 10) + 's';
-      document.body.appendChild(dust);
-    }
-  </script>
-
-  <!-- Cursor dust trail -->
+  <!-- Cursor Dust Trail -->
   <script>
     document.addEventListener('mousemove', (e) => {
-      const particle = document.createElement('div');
-      particle.className = 'cursor-dust';
-      particle.style.left = `${e.clientX}px`;
-      particle.style.top = `${e.clientY}px`;
-      document.body.appendChild(particle);
-      setTimeout(() => particle.remove(), 1000);
+      const dust = document.createElement('div');
+      dust.className = 'cursor-dust';
+      dust.style.left = `${e.clientX}px`;
+      dust.style.top = `${e.clientY}px`;
+      document.body.appendChild(dust);
+      setTimeout(() => dust.remove(), 1000);
     });
   </script>
 
