@@ -2,222 +2,297 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Under Construction</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEPLOY.NOW</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@600&family=Fira+Code&display=swap" rel="stylesheet">
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       width: 100%;
-      overflow: hidden;
-      background: #ec6608;
-      background: linear-gradient(-45deg, #ec6608 0%, #ff9248 50%, #ec6608 100%);
-      background-size: 200% 200%;
-      animation: gradientBG 12s ease infinite;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #ec6608, #ff9248);
+      background-size: 400% 400%;
+      animation: gradientShift 10s ease infinite;
       color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      position: relative;
     }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
     }
 
-    /* Crane + Hook */
-    .crane-wrap {
+    .header {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      animation: swing 2.5s ease-in-out infinite;
-      transform-origin: top center;
-      margin-bottom: 1rem;
+      width: 90%;
+      max-width: 1200px;
+      padding: 1.5rem 0;
     }
 
-    .crane-icon {
-      font-size: 2.5rem;
-    }
-
-    .hook-line {
-      width: 2px;
-      height: 60px;
-      background: white;
-      margin: 0 auto;
-    }
-
-    .hook {
-      font-size: 1.2rem;
-      margin-top: -10px;
-    }
-
-    @keyframes swing {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(6deg); }
-    }
-
-    /* Text drop-in */
-    .construction-text {
+    .logo {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.15em;
-      font-size: 3rem;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      align-items: center;
+      font-size: 1.6rem;
+      font-weight: 800;
     }
 
-    .letter {
-      opacity: 0;
-      transform: translateY(-100px);
-      animation: dropIn 0.6s ease-out forwards;
+    .logo img {
+      width: 36px;
+      height: 36px;
+      margin-right: 0.5rem;
     }
 
-    .letter.space {
-      width: 0.6em;
-    }
-
-    @keyframes dropIn {
-      0% {
-        transform: translateY(-100px);
-        opacity: 0;
-      }
-      80% {
-        transform: translateY(10px);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .letter:nth-child(n) {
-      animation-delay: calc(0.08s * var(--i));
-    }
-
-    /* Button */
-    a {
-      font-size: 1.3rem;
-      color: white;
-      text-decoration: none;
-      padding: 0.5em 1.5em;
-      border: 2px solid white;
-      border-radius: 10px;
-      margin-top: 2em;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
-    }
-
-    a:hover {
-      background-color: white;
+    .top-button a {
+      background: white;
       color: #ec6608;
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+      transition: all 0.25s ease;
+      font-family: 'Poppins', sans-serif;
+      margin-left: 10px;
+    }
+
+    .top-button a:hover {
       transform: scale(1.05);
       box-shadow: 0 0 20px white;
     }
 
-    /* Falling Dust */
-    .falling-dust {
-      position: absolute;
-      top: -10px;
-      width: 5px;
-      height: 5px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 50%;
-      animation: fall linear infinite;
-      pointer-events: none;
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      gap: 2rem;
     }
 
-    @keyframes fall {
-      0% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(110vh);
-        opacity: 0;
-      }
+    .title {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
     }
 
-    /* Cursor Sparkles */
-    .cursor-dust {
+    .subtitle {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: #ffe0c2;
+    }
+
+    .card-wrapper {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .info-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
+      width: 320px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .info-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .info-box h2 {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .info-box p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #ffe0c2;
+    }
+
+    .code-wrapper {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .code-wrapper a {
+        color: #0769e9; /* darker sky blue */
+        text-decoration: none;
+        font-weight: 600;
+        }
+
+    .code-wrapper a:hover {
+    color: #002b64; /* slightly lighter on hover */
+    text-decoration: underline;
+    }
+
+    .copy-btn {
+      background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.4em 0.9em;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .copy-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+    }
+
+    .notification {
       position: fixed;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
+      top: 1em;
+      right: 1em;
+      background: #000;
+      color: white;
+      padding: 0.7em 1.2em;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      opacity: 0;
       pointer-events: none;
-      animation: fadeOut 1s ease forwards;
+      transition: opacity 0.3s ease;
+      z-index: 9999;
     }
 
-    @keyframes fadeOut {
-      to {
-        transform: translateY(-10px);
-        opacity: 0;
-      }
+    .notification.show {
+      opacity: 1;
+    }
+
+    .counter {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #fff8f0;
+      margin-top: 2rem;
+      animation: slide-in 0.5s ease-out;
+    }
+
+    @keyframes slide-in {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .fab {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #fff;
+      color: #ec6608;
+      padding: 1rem;
+      border-radius: 50%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      font-size: 1.5rem;
+      text-decoration: none;
+      z-index: 999;
+      transition: transform 0.2s ease;
+    }
+
+    .fab:hover {
+      transform: scale(1.1);
     }
   </style>
 </head>
 <body>
+  <div class="header">
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+      DEPLOY.NOW
+    </div>
+    <div class="top-button">
+      <a href="https://x.com/DeployDotNow" target="_blank">X Updates</a>
+    </div>
+  </div>
 
-  <!-- Falling Particles -->
+  <div id="notify" class="notification">Copied to clipboard</div>
+
+  <div class="main-content">
+    <div class="title">DEPLOY ON ANY LAUNCHPAD</div>
+    <div class="subtitle">USING X</div>
+
+    <div class="card-wrapper">
+      <div class="info-box">
+        <h2>PUMP.FUN</h2>
+        <p>To upload a coin on Pump.Fun, make a post on Twitter mentioning the bot and use:</p>
+        <div class="code-wrapper">
+          <span><a href="https://x.com/deploynowbot" target="_blank">@DeployNowBot</a> pump+$TICKER+your coin name</span>
+          <button class="copy-btn" onclick="copyText('@DeployNowBot pump+$TICKER+your coin name')">Copy</button>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h2>RAYDIUM</h2>
+        <p>To upload a coin on Raydium, make a post on Twitter mentioning the bot and use:</p>
+        <div class="code-wrapper">
+          <span><a href="https://x.com/deploynowbot" target="_blank">@DeployNowBot</a> raydium+$TICKER+your coin name</span>
+          <button class="copy-btn" onclick="copyText('@DeployNowBot raydium+$TICKER+your coin name')">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="counter">
+      Live in: <span id="countdown">Loading...</span>
+    </div>
+  </div>
+
+  <a href="https://x.com/deploynowbot" class="fab" target="_blank">🚀</a>
+
   <script>
-    for (let i = 0; i < 60; i++) {
-      const dust = document.createElement('div');
-      dust.classList.add('falling-dust');
-      dust.style.left = Math.random() * 100 + 'vw';
-      dust.style.animationDuration = (5 + Math.random() * 10) + 's';
-      document.body.appendChild(dust);
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const notify = document.getElementById('notify');
+        notify.classList.add('show');
+        setTimeout(() => notify.classList.remove('show'), 2000);
+      });
     }
+
+    const targetDateString = "5/18/2025 15:00 EST";
+
+    function updateCountdown() {
+      const countdownEl = document.getElementById("countdown");
+      const targetTime = new Date(targetDateString);
+      const now = new Date();
+
+      const diff = targetTime - now;
+      if (diff <= 0) {
+        countdownEl.textContent = "LIVE NOW";
+        return;
+      }
+
+      const hours = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+      const minutes = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, '0');
+      const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+
+      countdownEl.textContent = `${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   </script>
-
-  <!-- Crane + Hook -->
-  <div class="crane-wrap">
-    <div class="crane-icon">🏗️</div>
-    <div class="hook-line"></div>
-    <div class="hook">🪝</div>
-  </div>
-
-  <!-- UNDER CONSTRUCTION Text -->
-  <div class="construction-text">
-    <span class="letter" style="--i:1">U</span>
-    <span class="letter" style="--i:2">N</span>
-    <span class="letter" style="--i:3">D</span>
-    <span class="letter" style="--i:4">E</span>
-    <span class="letter" style="--i:5">R</span>
-    <span class="letter space" style="--i:6"> </span>
-    <span class="letter" style="--i:7">C</span>
-    <span class="letter" style="--i:8">O</span>
-    <span class="letter" style="--i:9">N</span>
-    <span class="letter" style="--i:10">S</span>
-    <span class="letter" style="--i:11">T</span>
-    <span class="letter" style="--i:12">R</span>
-    <span class="letter" style="--i:13">U</span>
-    <span class="letter" style="--i:14">C</span>
-    <span class="letter" style="--i:15">T</span>
-    <span class="letter" style="--i:16">I</span>
-    <span class="letter" style="--i:17">O</span>
-    <span class="letter" style="--i:18">N</span>
-  </div>
-
-  <!-- Button -->
-  <a href="https://x.com/DeployDotNow" target="_blank">Check Our X For Updates</a>
-
-  <!-- Cursor Dust Trail -->
-  <script>
-    document.addEventListener('mousemove', (e) => {
-      const dust = document.createElement('div');
-      dust.className = 'cursor-dust';
-      dust.style.left = `${e.clientX}px`;
-      dust.style.top = `${e.clientY}px`;
-      document.body.appendChild(dust);
-      setTimeout(() => dust.remove(), 1000);
-    });
-  </script>
-
 </body>
 </html>
