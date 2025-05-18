@@ -308,43 +308,32 @@
     </div>
 
     <div class="counter">
-      Live in: <span id="countdown">Loading...</span>
-    </div>
+  Total Deploys: <span id="countdown">153</span>
+</div>
+
   </div>
 
   <a href="https://x.com/deploynowbot" class="fab" target="_blank">🚀</a>
 
   <script>
-    function copyText(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        const notify = document.getElementById('notify');
-        notify.classList.add('show');
-        setTimeout(() => notify.classList.remove('show'), 2000);
-      });
-    }
+  const COUNTER_KEY = 'deployCounter';
+  const START_VALUE = 153;
+  const INTERVAL = 2000; // 2 seconds
 
-    const targetDateString = "5/18/2025 15:08 EST";
+  // Retrieve saved counter or initialize
+  let deployCount = Number(localStorage.getItem(COUNTER_KEY)) || START_VALUE;
 
-    function updateCountdown() {
-      const countdownEl = document.getElementById("countdown");
-      const targetTime = new Date(targetDateString);
-      const now = new Date();
+  const countdownEl = document.getElementById("countdown");
 
-      const diff = targetTime - now;
-      if (diff <= 0) {
-        countdownEl.textContent = "LIVE NOW";
-        return;
-      }
+  function updateCounter() {
+    countdownEl.textContent = deployCount;
+    localStorage.setItem(COUNTER_KEY, deployCount);
+    deployCount++;
+  }
 
-      const hours = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
-      const minutes = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, '0');
-      const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+  updateCounter(); // Initial call
+  setInterval(updateCounter, INTERVAL);
+</script>
 
-      countdownEl.textContent = `${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
 </body>
 </html>
